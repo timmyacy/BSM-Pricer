@@ -1,4 +1,4 @@
-.idea/*
-.zed
+.idea/
+.zed/
 build/*
-cmake-build-*
+cmake-build-*/

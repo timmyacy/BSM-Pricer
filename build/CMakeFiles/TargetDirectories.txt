@@ -1,3 +1,0 @@
-/Users/tajibode/CLionProjects/New/build/CMakeFiles/New.dir
-/Users/tajibode/CLionProjects/New/build/CMakeFiles/edit_cache.dir
-/Users/tajibode/CLionProjects/New/build/CMakeFiles/rebuild_cache.dir

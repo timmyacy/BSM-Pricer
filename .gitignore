@@ -1,1 +1,4 @@
-doble
+.idea/*
+.zed
+build/*
+cmake-build-*

@@ -28,18 +28,13 @@ BSMParameters getParams() {
 
 double calculate_d1(const BSMParameters &params) {
 
-  double d1{};
-  d1 = log(params.current_price / params.strike_price) +
-       ((pow(params.volatility, 2) / 2) + params.risk_free_rate) * params.time /
-           (params.volatility * sqrt(params.time));
-
-  return d1;
+  return log(params.current_price / params.strike_price) +
+         ((pow(params.volatility, 2) / 2) + params.risk_free_rate) *
+             params.time / (params.volatility * sqrt(params.time));
 }
 
 double calculate_d2(double d1, const BSMParameters &params) {
-  double d2{};
-  d2 = d1 - (params.volatility * sqrt(params.time));
-  return d2;
+  return d1 - (params.volatility * sqrt(params.time));
 }
 
 int main() {

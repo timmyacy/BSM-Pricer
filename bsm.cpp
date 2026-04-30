@@ -1,10 +1,11 @@
 #include "bsm.h"
 #include <cmath>
-
 double calculate_d1(const BSMParameters &params) {
-  return log(params.current_price / params.strike_price) +
-         ((pow(params.volatility, 2) / 2) + params.risk_free_rate) *
-             params.time / (params.volatility * sqrt(params.time));
+  return (log(params.current_price / params.strike_price) +
+          ((params.volatility * params.volatility / 2) +
+           params.risk_free_rate) *
+              params.time) /
+         (params.volatility * sqrt(params.time));
 }
 
 double calculate_d2(double d1, const BSMParameters &params) {

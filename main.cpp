@@ -1,50 +1,16 @@
-#include <cmath>
-#include <iostream>
-using namespace std;
-struct BSMParameters {
-  double risk_free_rate{};
-  double volatility{};
-  int time{};
-  double current_price{};
-  double strike_price{};
-};
-
-BSMParameters getParams() {
-  BSMParameters params{};
-
-  cout << "Enter your price \n";
-  cin >> params.strike_price;
-  cout << "Enter the duration \n";
-  cin >> params.time;
-  cout << "Enter the volatility \n";
-  cin >> params.volatility;
-  cout << "Enter the risk free rate \n";
-  cin >> params.risk_free_rate;
-  cout << "Enter the current_price \n";
-  cin >> params.current_price;
-
-  return params;
-}
-
-double calculate_d1(const BSMParameters &params) {
-
-  return log(params.current_price / params.strike_price) +
-         ((pow(params.volatility, 2) / 2) + params.risk_free_rate) *
-             params.time / (params.volatility * sqrt(params.time));
-}
-
-double calculate_d2(double d1, const BSMParameters &params) {
-  return d1 - (params.volatility * sqrt(params.time));
-}
+#include "bsm.h"
+#include "greeks.h"
+#include "ui.h"
 
 int main() {
+  int choice = getMenuChoice();
   BSMParameters input = getParams();
+  input.option = (choice == 0) ? CALL : PUT;
   double d1 = calculate_d1(input);
   double d2 = calculate_d2(d1, input);
-  double call_price =
-      (input.current_price * (erfc(-d1 / std::sqrt(2)) / 2) -
-       (input.strike_price * exp(-input.risk_free_rate * input.time) *
-        (erfc(-d2 / std::sqrt(2)) / 2)));
-  cout << " The call price is " << call_price;
+  double price = getPrice(input, d1, d2);
+  double pcp = calculatePCP(input, d1, d2);
+  calculate_greeks(input, d1, d2);
+  printResults(input, price, pcp);
   return 0;
 }

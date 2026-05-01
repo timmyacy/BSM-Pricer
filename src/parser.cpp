@@ -1,6 +1,6 @@
 #include "parser.h"
+#include "bsm.h"
 #include "greeks.h"
-#include "inlcude/bsm.h"
 #include "ui.h"
 #include <filesystem>
 #include <fstream>

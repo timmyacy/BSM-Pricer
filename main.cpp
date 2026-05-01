@@ -1,5 +1,5 @@
-#include "bsm.h"
 #include "greeks.h"
+#include "include/bsm.h"
 #include "parser.h"
 #include "ui.h"
 

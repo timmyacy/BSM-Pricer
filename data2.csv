@@ -1,0 +1,6 @@
+current_price,strike_price,time,volatility,risk_free_rate,option
+100,130,1,0.2,0.05,PUT
+150,120,1,0.25,0.05,CALL
+75,80,0.5,0.35,0.02,PUT
+200,200,1,0.15,0.04,CALL
+100,100,2,0.2,0.05,CALL

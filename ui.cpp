@@ -19,9 +19,9 @@ BSMParameters getParams() {
   return params;
 }
 int getMenuChoice() {
-  string options[] = {"CALL", "PUT"};
+  string options[] = {"CALL", "PUT", "CSV Mode"};
   int selected = 0;
-  int total = 2;
+  int total = 3;
 
   while (true) {
     cout << "\033[2J\033[H";
@@ -86,4 +86,24 @@ void printResults(const BSMParameters &input, double price, double pcp) {
   cout << string(35, '-') << "\n";
   cout << left << setw(20) << "PCP Check" << right << setw(12) << pcp << "\n";
   cout << string(35, '-') << "\n";
+}
+
+void printCSVHeader() {
+  cout << "\n";
+  cout << string(100, '-') << "\n";
+  cout << left << setw(6) << "Type" << setw(10) << "Spot" << setw(10)
+       << "Strike" << setw(8) << "Time" << setw(8) << "Vol" << setw(12)
+       << "Price" << setw(10) << "Delta" << setw(10) << "Gamma" << setw(10)
+       << "Vega" << "Rho" << "Theta"
+       << "\n";
+  cout << string(100, '-') << "\n";
+}
+void printCSVResults(const BSMParameters &input, double price) {
+  cout << fixed << setprecision(4);
+  cout << left << setw(6) << (input.option == CALL ? "CALL" : "PUT") << setw(10)
+       << input.current_price << setw(10) << input.strike_price << setw(8)
+       << input.time << setw(8) << input.volatility << setw(12) << price
+       << setw(10) << input.greeks.delta << setw(10) << input.greeks.gamma
+       << setw(10) << input.greeks.vega << setw(10) << input.greeks.rho
+       << input.greeks.theta << "\n";
 }

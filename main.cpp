@@ -1,9 +1,16 @@
 #include "bsm.h"
 #include "greeks.h"
+#include "parser.h"
 #include "ui.h"
 
 int main() {
   int choice = getMenuChoice();
+
+  if (choice == 2) {
+    runCSVMode();
+    return 0;
+  }
+
   BSMParameters input = getParams();
   input.option = (choice == 0) ? CALL : PUT;
   double d1 = calculate_d1(input);
